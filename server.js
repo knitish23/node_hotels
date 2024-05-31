@@ -5,6 +5,7 @@ const db = require('./db')
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json()); //req.body
+const PORT = process.env.PORT || 3000
 
 const Task = require('./models/Task')
 
@@ -16,11 +17,12 @@ app.get('/', function (req, res) {
 const personRoutes = require('./routes/personRoutes');
 const menuItemRoutes = require('./routes/menuItemRoutes');
 const taskRoutes = require('./routes/taskRoutes');
+require('dotenv').config();
 
 // use the router
 app.use('/person', personRoutes);
 app.use('/menu', menuItemRoutes);
 app.use('/api/task', taskRoutes);
-app.listen(3000, () => {
-  console.log("Listing on port 3000");
+app.listen(PORT, () => {
+  console.log("Listing on port " + PORT);
 })
